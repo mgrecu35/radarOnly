@@ -563,14 +563,14 @@ extern "C" void ensradretstcvku_( radarDataType   *radarData,
     {
       for(j=0;j<9;j++)
 	for(i=0;i<radarRet->nMemb;i++)
-	  logdNw[i][j]+=0.1;
+	  logdNw[i][j]+=0.01; //ocean v6 0.1
     }
   else
     if(*wfractPix<10 and radarData->hfreez>2.5 and
        stormStruct->rainType==2)
       for(j=0;j<9;j++)
 	for(i=0;i<radarRet->nMemb;i++)
-	  logdNw[i][j]-=0.1;
+	  logdNw[i][j]-=0.01; // land v6 -0.1
 
   if(stormStruct->rainType==2 and radarData->hfreez>=-2)
     for(i=0;i<radarRet->nMemb;i++)
@@ -633,7 +633,7 @@ extern "C" void ensradretstcvku_( radarDataType   *radarData,
 		  i0dm=59;
 		logdNw[i][j]+=0.2*(NwSt[i0dm]-logdNw[i][j]);
 	      }
-	    logdNw[i][j]+=0.3; //previously 0.2
+	    logdNw[i][j]+=0.2; //previously 0.2
 	    int dnode=stormStruct->nodes[2]-stormStruct->nodes[0];
 	    if(dnode>=8 && dnode<28)
 	      logdNw[i][j]-=0.2;
