@@ -140,9 +140,9 @@ float *log10dN   : vector, returns retrieved log10(N0/N0ref)
 //end    MG 10/29/15
   nstd=nstdA;
 //  SFM  begin  07/01/2014; for M.Grecu  random sequences
-  if(*wfractPix>10.)
-//  SFM  end    07/01/2014
+  /*if(*wfractPix>10.)
     nstd=0.125;
+  */
   //nstd=0;
   nSub=8;
   //  nstd*=1;
