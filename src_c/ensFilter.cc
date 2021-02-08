@@ -561,7 +561,7 @@ extern "C" void ensradretstcvku_( radarDataType   *radarData,
 
   if(*wfractPix>90)
     {
-      if (stormStruct->nodes[0]<stormStruct->nodes[2]-2 && 
+      if (stormStruct->nodes[0]<stormStruct->nodes[2]+2 && 
 	  stormStruct->rainType==1)
 	for(j=0;j<9;j++)
 	  for(i=0;i<radarRet->nMemb;i++)
@@ -636,6 +636,8 @@ extern "C" void ensradretstcvku_( radarDataType   *radarData,
 		logdNw[i][j]+=0.2*(NwSt[i0dm]-logdNw[i][j]);
 	      }
 	    logdNw[i][j]+=0.2; //previously 0.2
+	    if(*wfractPix>10)
+	      logdNw[i][j]+=0.1; //previously 0.0
 	    int dnode=stormStruct->nodes[2]-stormStruct->nodes[0];
 	    //if(dnode>=8 && dnode<28)
 	    //  logdNw[i][j]-=0.2;
@@ -706,13 +708,13 @@ extern "C" void ensradretstcvku_( radarDataType   *radarData,
 		    logdNw[i][j]+=0.15/fdm*(NwSt[i0dm]-logdNw[i][j]);
 		  }
 		int dnode=stormStruct->nodes[2]-stormStruct->nodes[0];
-		logdNw[i][j]+=0.25; //previously 0.6
-		if(stormStruct->nodes[0]<52)
+		logdNw[i][j]+=0.205; //previously 0.6
+		if(stormStruct->nodes[0]<50)
 		  {
-		    float dns=(48-stormStruct->nodes[0])/10.0;
+		    float dns=(50-stormStruct->nodes[0])/10.0;
 		    if(dns>2.0)
 		      dns=2.0;
-		    logdNw[i][j]+=0.15*dns;
+		    logdNw[i][j]+=0.1*dns;
 		  }
 		if(dnode>=10 && dnode<28)
 		  logdNw[i][j]-=0.05;
